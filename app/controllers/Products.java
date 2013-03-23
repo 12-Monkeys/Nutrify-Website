@@ -32,13 +32,7 @@ public class Products extends Controller {
         else {
         	result.put("status", "OK");
         	result.put("message", "");
-        	for (Product product : products) {
-        		ObjectNode productJson = Json.newObject();
-        		productJson.put("ean", product.ean);
-        		productJson.put("name", product.name);
-        		productJson.put("description", product.description);
-        		result.put("result", productJson);
-        	}
+        	result.put("result", Json.toJson(products));
         }
         return ok(result);
     }
