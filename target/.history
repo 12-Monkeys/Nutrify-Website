@@ -1,0 +1,49 @@
+run
+exit
+run
+debug
+play debug
+exit
+debug
+run
+exit
+run
+exit
+run
+exit
+run
+help play
+reload
+update
+dependencies
+update
+help
+help play
+clean
+eclipsify
+run
+exit
+run
+exit
+run
+exit
+run
+exit
+help
+help play
+update
+exit
+update
+exit
+clean compile
+clean
+compile
+eclipsify
+compile
+run
+dist
+exit
+help war
+help
+war
+exit
