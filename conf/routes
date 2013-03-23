@@ -14,7 +14,9 @@ GET     /app/                       controllers.Mobile.index()
 
 # Fetching barcodes
 GET     /products/                  controllers.Products.list()
+GET     /products/json              controllers.Products.listJson()
 GET     /products/new               controllers.Products.showBlank()
 GET     /products/:ean              controllers.Products.show(ean: Long)
+GET     /products/:ean/json         controllers.Products.showJson(ean: Long)
 POST    /products/                  controllers.Products.save()
 GET     /products/delete/:ean       controllers.Products.delete(ean: Long)
