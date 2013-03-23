@@ -56,6 +56,9 @@
   <classpathentry path="/Users/maxime/workspace/play/framework/../repository/cache/com.fasterxml.jackson.core/jackson-databind/jars/jackson-databind-2.1.0.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/maxime/workspace/play/framework/../repository/cache/com.fasterxml.jackson.core/jackson-annotations/jars/jackson-annotations-2.1.0.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/maxime/workspace/play/framework/../repository/cache/de.undercouch/bson4jackson/jars/bson4jackson-2.1.0.jar" kind="lib"></classpathentry>
+  <classpathentry path="/Users/maxime/workspace/play/framework/../repository/cache/com.github.play2war.ext/redirect-playlogger_2.9.1/jars/redirect-playlogger_2.9.1-1.0.1.jar" kind="lib"></classpathentry>
+  <classpathentry path="/Users/maxime/workspace/play/framework/../repository/cache/com.github.play2war/play2-war-core-servlet25_2.9.1/jars/play2-war-core-servlet25_2.9.1-0.8.1.jar" kind="lib"></classpathentry>
+  <classpathentry path="/Users/maxime/workspace/play/framework/../repository/cache/com.github.play2war/play2-war-core-common_2.9.1/jars/play2-war-core-common_2.9.1-0.8.1.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/maxime/workspace/play/framework/../repository/local/play/play-test_2.9.1/2.0.4/jars/play-test_2.9.1.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/maxime/workspace/play/framework/../repository/local/org.specs2/specs2_2.9.1/1.9/jars/specs2_2.9.1.jar" kind="lib"></classpathentry>
   <classpathentry path="/Users/maxime/workspace/play/framework/../repository/local/org.specs2/specs2-scalaz-core_2.9.1/6.0.1/jars/specs2-scalaz-core_2.9.1.jar" kind="lib"></classpathentry>

@@ -1,0 +1,63 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-responsive.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    </head>
+    <body>
+        @navigation()
+        <div class="container">
+	        @if(flash.containsKey("success")){
+	           <div class="row">
+	               <div class="alert alert-success span12">
+	                   @flash.get("success")
+	               </div>
+	           </div>
+	        }
+	        @if(flash.containsKey("error")){
+	           <div class="row">
+	               <div class="alert alert-error span12">
+	                   @flash.get("error")
+	               </div>
+	           </div>  
+	        }
+	        @if(flash.containsKey("warning")){
+               <div class="row">
+                   <div class="alert alert-warning span12">
+                       @flash.get("warning")
+                   </div>
+               </div>  
+            }
+            <div class="row">
+              <div class="span12">
+                @content
+              </div>
+            </div>
+          <div class="row">
+            <div class="span12">
+              <hr>
+            </div>
+          </div>
+	      <footer id="about">
+	       <div class="row">
+	         <div class="span12">
+				<p class="pull-right"><i class="icon-arrow-up"></i><a href="#">Back to top</a></p>
+				<p class="links">
+				    Made by <a target="_blank" href="https://github.com/tarraschk">Maxime Alay-Eddine</a> & <a target="_blank" href="https://github.com/adrienthiery">Adrien Thiery</a> - <a target="_blank" href="http://www.12monkeys.io/">http://www.12Monkeys.io</a>.<br/>
+				    Code licensed under the <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.<br/>
+				    Work based on <a target="_blank" href="http://www.playframework.org/">Playframework</a>, <a target="_blank" href="http://jquery.com/">jQuery</a> and <a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap</a>. Icons from <a target="_blank" href="http://glyphicons.com/">Glyphicons</a>. Web fonts from <a target="_blank" href="http://www.google.com/webfonts">Google</a>.
+				</p>
+			  </div>
+	       </div>
+	      </footer>
+        </div>
+        <script src="@routes.Assets.at("javascripts/jquery.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+    </body>
+</html>
