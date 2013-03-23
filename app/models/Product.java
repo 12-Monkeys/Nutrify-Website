@@ -2,24 +2,49 @@ package models;
 
 import java.util.*;
 
+import org.bson.types.*;
+import org.codehaus.jackson.annotate.*;
+import org.jongo.*;
+import uk.co.panaxiom.playjongo.*;
+
 public class Product {
+	
+	public static MongoCollection products() {
+		return PlayJongo.getCollection("products");
+	}
+	
+	@JsonProperty("_id")
+    public ObjectId id;
+	
     public Long ean;
     public String name;
     public String description;
-
+    public Set<Update> updates;
+    public Set<Diet> diets;
+    
     public Product() {}
 
     public Product(Long ean, String name, String description) {
       this.ean = ean;
       this.name = name;
       this.description = description;
+      this.updates = new HashSet<Update>();
+      this.diets = new HashSet<Diet>();
+    }
+    
+    public Product(Long ean, String name, String description, Set<Update> updates, Set<Diet> diets) {
+        this.ean = ean;
+        this.name = name;
+        this.description = description;
+        this.updates = updates;
+        this.diets = diets;
     }
 
     public String toString() {
       return String.format("%s - %s", ean, name);
     }
 
-    private static Set<Product> products;
+    /*private static Set<Product> products;
     static {
         products = new HashSet<Product>();
         products.add(new Product(1111111111111L, "Paperclips 1", "Paperclips description 1"));
@@ -58,6 +83,26 @@ public class Product {
 
     public static void add(Product product) {
         products.add(product);
+    }*/
+    
+    public void insert() {
+    	products().update("{ean: #}", this.ean).upsert().with("{$set: {name: #, description: #}}",this.name,this.description);
+    }
+    
+    public void remove() {
+        products().remove(this.id);
+    }
+    
+    public static Product findByEan(Long ean) {
+        return products().findOne("{ean: #}", ean).as(Product.class);
+    }
+    
+    public static List<Product> findByName(String name) {
+    	return products().distinct("name").query("{name: #}", name).as(Product.class);
     }
 
+    public static Iterable<Product> findAll() {
+    	return products().find().as(Product.class);
+    }
+    
 }

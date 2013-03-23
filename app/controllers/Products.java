@@ -10,7 +10,10 @@ import views.html.*;
 public class Products extends Controller {
 
     public static Result list() {
-        Set<Product> products = Product.findAll();
+        Iterable<Product> products = Product.findAll();
+        if (!products.iterator().hasNext()) {
+        	flash("warning", "No products in the DB!");
+        }
         return ok(list.render(products));
     }
 
@@ -19,15 +22,31 @@ public class Products extends Controller {
     }
 
     public static Result show(Long ean) {
-      return TODO;
+    	final Product product = Product.findByEan(ean);
+    	if (product == null) {
+    		return notFound(String.format("Product %s does not exist.", ean));
+    	}
+    	Form<Product> filledForm = productForm.fill(product);
+    	return ok(show.render(filledForm));
     }
     
     public static Result save() {
 		Form<Product> boundForm = productForm.bindFromRequest();
+		if(boundForm.hasErrors()) {
+			flash("error", "Please correct the form below.");
+			return badRequest(show.render(boundForm));
+		}
 		Product product = boundForm.get();
-		Product.add(product);
-		return ok(String.format("Saved product %s", product));
+		product.insert();
+		flash("success", String.format("Successfully added product %s", product));
+		return redirect(routes.Products.list());
 	}
+    
+    public static Result delete(Long ean) {
+		Product.products().remove("{ean: #}", ean);
+		flash("success", String.format("Successfully deleted product with ean %s", ean));
+		return redirect(routes.Products.list());
+    }
     
     private static final Form<Product> productForm = form(Product.class);
     

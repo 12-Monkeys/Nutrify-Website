@@ -5,7 +5,11 @@
     <h1>Product form</h1>
 	@helper.form(action = routes.Products.save()) {
 	    <fieldset>
-	        <legend>Product (@productForm("name").valueOr("New"))</legend>
+	        @if(productForm("name").valueOr("").isEmpty()) {
+	           <legend>New product</legend>
+	        } else {
+	           <legend>Product @productForm("name").value <a class="pull-right" href="@routes.Products.delete(productForm("ean").value.toLong)"><i class="icon-remove"></i></a></legend>
+	        }
 	        @helper.inputText(productForm("ean"))
 	        @helper.inputText(productForm("name"))
 	        @helper.textarea(productForm("description"))
